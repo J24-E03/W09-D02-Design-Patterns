@@ -12,6 +12,11 @@ public class Manager extends AbstractEmployee implements Department {
     }
 
     @Override
+    public String getDepartment() {
+        return this.department;
+    }
+
+    @Override
     public Manager assignDepartment(String name) {
         this.department = name;
 
