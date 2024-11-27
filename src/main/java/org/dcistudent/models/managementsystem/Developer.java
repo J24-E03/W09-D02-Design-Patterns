@@ -3,13 +3,20 @@ package org.dcistudent.models.managementsystem;
 import lombok.*;
 import org.dcistudent.interfaces.models.managementsystem.Department;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter @Setter
 public class Developer extends AbstractEmployee implements Department {
     private String programmingLanguage;
-    private static List<String> programmingLanguagesAvailable = List.of("Java", "Python", "JavaScript");
+    private static Set<String> programmingLanguagesAvailable = new HashSet<>();
     private String department = "";
+
+    static {
+        programmingLanguagesAvailable.add("Java");
+        programmingLanguagesAvailable.add("Python");
+        programmingLanguagesAvailable.add("JavaScript");
+    }
 
     public Developer(Integer id, String name, Double salary, String programmingLanguage) {
         super(id, name, salary);
@@ -23,6 +30,11 @@ public class Developer extends AbstractEmployee implements Department {
         }
 
         throw new IllegalArgumentException("Invalid programming language");
+    }
+
+    @Override
+    public String getDepartment() {
+        return this.department;
     }
 
     @Override
@@ -43,9 +55,9 @@ public class Developer extends AbstractEmployee implements Department {
 
     @Override
     public String toString() {
-        return "Developer [id=" + getId() +
-                ", name=" + getName() +
-                ", salary=" + getSalary() +
+        return "Developer [id=" + this.getId() +
+                ", name=" + this.getName() +
+                ", salary=" + this.getSalary() +
                 ", programmingLanguage=" + this.getProgrammingLanguage() + "]";
     }
 }
